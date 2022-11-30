@@ -150,7 +150,7 @@ func getMgmtEndpointFromSecretDir(path string) (
 		}
 		creds := strings.SplitN(str, ":", 4)
 		if len(creds) != 4 {
-			return nil, ErrMissingValue
+			return nil, fmt.Errorf("creds: %s, %s", creds, ErrMissingValue)
 		}
 		addr, err := url.Parse(fmt.Sprintf("https://%s:%s", creds[0], creds[1]))
 		if err != nil {
